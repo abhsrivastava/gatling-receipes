@@ -38,15 +38,11 @@ class ElasticSimulation extends Simulation {
   before {
     scenario("SetupIndex")
         .exec(
-            http("deleteindex")
-                .delete("/test")
-        )
-        .pause(5)
-        .exec(
             http("createindex")
                 .put("/test")
         )
         .inject(atOnceUsers(1))
+        .protocols(httpConf)
   }  
 
   setUp(
@@ -56,4 +52,15 @@ class ElasticSimulation extends Simulation {
         )
         .protocols(httpConf)
   )
+
+  after {
+    scenario("DeleteIndex")
+        .exec(
+            http("deleteindex")
+                .delete("/test")
+        )
+        .inject(atOnceUsers(1))
+        .protocols(httpConf)
+    println("finished executing cleanup....")
+  }
 }
