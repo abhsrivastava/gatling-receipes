@@ -1,0 +1,10 @@
+bin
+conf
+lib
+results
+target
+LICENSE
+user-files/bodies
+user-files/data
+user-files/simulations/computerdatabase/BasicSimulation.scala
+user-files/simulations/computerdatabase/advanced
